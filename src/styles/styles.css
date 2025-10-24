@@ -15,6 +15,30 @@
   --secondary-text-color: #ffffff;
 }
 
+::view-transition-old(root) {
+  animation-name: full-slide-to-left;
+  animation-duration: 900ms;
+  animation-timing-function: ease-out;
+}
+
+::view-transition-new(root) {
+  animation-name: full-slide-from-right;
+  animation-duration: 900ms;
+  animation-timing-function: ease-out;
+}
+
+@keyframes full-slide-from-right {
+  from {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes full-slide-to-left {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
 body {
   font-family: 'Inter', sans-serif;
 }
@@ -165,11 +189,11 @@ select:focus-visible,
   box-shadow: 0 0 0 4px var(--primary-shadow-color);
 }
 
-form > .form-control:not([hidden]) ~ .form-control:not([hidden]) {
+form>.form-control:not([hidden])~.form-control:not([hidden]) {
   margin-block-start: 30px;
 }
 
-form .form-control > :not([hidden]) ~ :not([hidden]) {
+form .form-control> :not([hidden])~ :not([hidden]) {
   margin-block-start: 10px;
 }
 
@@ -187,6 +211,7 @@ form .form-buttons {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -227,6 +252,8 @@ header {
   inset-block-start: 0;
   box-shadow: 0 1px 4px 0 #00000055;
   z-index: 9999;
+
+  view-transition-name: header;
 }
 
 .header-content {
@@ -351,7 +378,7 @@ header {
   min-height: 70vh;
 }
 
-.main-content > :not([hidden]) ~ :not([hidden]) {
+.main-content> :not([hidden])~ :not([hidden]) {
   margin-block-start: 30px;
 }
 
@@ -391,6 +418,7 @@ header {
 .login-form__do-not-have-account {
   text-align: center;
 }
+
 /* END OF LOGIN, REGISTER PAGE */
 
 /* HOME PAGE */
@@ -486,6 +514,7 @@ header {
   background-color: var(--primary-color);
   color: var(--primary-text-color);
 }
+
 /* END OF HOME PAGE */
 
 /* DETAIL PAGE */
@@ -607,7 +636,7 @@ header {
   gap: 10px;
 }
 
-.tns-nav > [aria-controls] {
+.tns-nav>[aria-controls] {
   min-height: auto;
   min-width: auto;
   width: 10px;
@@ -617,9 +646,10 @@ header {
   border: 0;
 }
 
-.tns-nav > .tns-nav-active[aria-controls] {
+.tns-nav>.tns-nav-active[aria-controls] {
   background-color: var(--primary-color);
 }
+
 /* Tiny Slider */
 
 .report-detail__body {
@@ -745,6 +775,7 @@ header {
 .report-detail__comment-item__body__text {
   color: #5d5d5d;
 }
+
 /* Report comments section */
 /* END OF DETAIL PAGE */
 
@@ -776,7 +807,7 @@ header {
   padding: 30px 25px;
 }
 
-.new-form > .form-control > :not([hidden]) ~ :not([hidden]) {
+.new-form>.form-control> :not([hidden])~ :not([hidden]) {
   margin-block-start: 8px;
 }
 
@@ -791,11 +822,11 @@ header {
   font-size: 1rem;
 }
 
-.new-form__title__container > :not([hidden]) ~ :not([hidden]),
-.new-form__damage-level__container > :not([hidden]) ~ :not([hidden]),
-.new-form__description__container > :not([hidden]) ~ :not([hidden]),
-.new-form__documentations__container > :not([hidden]) ~ :not([hidden]),
-.new-form__location__container > :not([hidden]) ~ :not([hidden]) {
+.new-form__title__container> :not([hidden])~ :not([hidden]),
+.new-form__damage-level__container> :not([hidden])~ :not([hidden]),
+.new-form__description__container> :not([hidden])~ :not([hidden]),
+.new-form__documentations__container> :not([hidden])~ :not([hidden]),
+.new-form__location__container> :not([hidden])~ :not([hidden]) {
   margin-block-start: 10px;
 }
 
@@ -891,6 +922,7 @@ header {
   display: flex;
   gap: 10px;
 }
+
 /* END OF NEW REPORT FORM */
 
 /* FOOTER */

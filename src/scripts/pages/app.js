@@ -7,6 +7,7 @@ import {
 import { setupSkipToContent } from '../utils';
 import { getAccessToken, getLogout } from '../utils/auth';
 import { routes } from '../routes/routes';
+import { transitionHelper } from '..';
 
 export default class App {
   #content;
@@ -84,17 +85,16 @@ export default class App {
     // Get page instance
     const page = route();
 
-    if (!document.startViewTransition) {
-      this.#content.innerHTML = await page.render();
-      await page.afterRender();
-      return;
-    }
-    const transition = document.startViewTransition(async () => {
-      this.#content.innerHTML = await page.render();
-      await page.afterRender();
+    const transitions = transitionHelper({
+      updateDOM: async () => {
+        this.#content.innerHTML = await page.render();
+        await page.afterRender();
+      },
     });
-    transition.updateCallbackDone.then(() => {
-      scrollTo({ top: 0, behavior: 'instant' });
+
+    transitions.ready.catch(console.error);
+    transitions.updateCallbackDone.then(() => {
+      scrollTo({top: 0, behavior: 'instant'});
       this.#setupNavigationList();
     });
   }
